@@ -26,15 +26,19 @@ app.get('/',(req,res)=>{
 
 })
 app.post('/',(req,res)=>{
-    items.push(req.body.newName)
-    res.redirect('/');
+    if(req.body.list==='WorkList'){
+        workitems.push(req.body.newName);
+        res.redirect('/work');
+    }
+    else{
+        items.push(req.body.newName);
+        res.redirect('/');
+
+    }
+  
 })
 app.get("/work",(req,res)=>{
     res.render('list', {Typeactivity: 'WorkList',newItems:workitems})
 })
-app.post('/work',(req,res)=>{
-    workitems.push(req.body.newName);
-    res.redirect('/work');
 
-})
 app.listen(PORT,console.log(`The server has started on port ${PORT}`));
