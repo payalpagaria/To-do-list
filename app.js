@@ -40,5 +40,18 @@ app.post('/',(req,res)=>{
 app.get("/work",(req,res)=>{
     res.render('list', {Typeactivity: 'WorkList',newItems:workitems})
 })
+app.get("/about",(req,res)=>{
+    let date=new Date();
+    const option={
+        weekday: "long",
+        month: "long",
+        day: "numeric",
+    }
+
+    let day=date.toLocaleString('en-US',option)
+
+    res.render('about',{Typeactivity:day })
+
+})
 
 app.listen(PORT,console.log(`The server has started on port ${PORT}`));
